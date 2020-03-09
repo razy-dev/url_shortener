@@ -6,20 +6,20 @@ URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원�
 예) https://en.wikipedia.org/wiki/URL_shortening => http://localhost/JZfOQNro
 
 * URL 입력폼 제공 및 결과 출력
-  - HTML5 + Bootstrap template 로 구현
-  - jQuery를 이용하여 RESTful client 구현
+  - RESTful api 와 client(jQuery) 구조 구현
     - 변환 결과 및 오류 메시지 출력 
-  - 입력폼에서 json 형식으로 전달된 값은 Spring Validation 으로 유효성 검증
+  - 입력폼에서 json 형식으로 전달된 값은 `Spring Validation` 으로 유효성 검증
   
 * URL Shortening Key는 8 Character 이내로 생성되어야 합니다.
   - Base52(0-9A-Za-z) encoding
+    - BaseN encoder 구현
   - 최소 3자리 ~ 최대 8자리 Shortening Key 생성
   - 생성된 Shortening Key의 길이가 8자리를 초과 할 경우 `OutOfMaxLengthException` 발생
   
 * 동일한 URL에 대한 요청은 동일한 Shortening Key로 응답해야 합니다.
   - Shortening Key 생성 시 원본 url 의 md5 hash 값 저장
   - table 에서 hash 값을 lookup 하여 동일 url 이 있을 경우, 저장된 Shortening Key 를 이용하여 Shortened URL 응답
-  - Entity -> DTO 변환에 ModelMapper 사용
+  - Entity -> DTO 변환에 `ModelMapper` 사용
   
 * Shortening된 URL을 요청받으면 원래 URL로 리다이렉트 합니다.
   - Shortened URL Redirect 처리: http://localhost:8080/[Shortening Key]
@@ -31,6 +31,23 @@ URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원�
    
 * Database 사용은 필수 아님
   - 동일한 URL 처리를 위해 MySQL Database 사용
+
+### TODO
+* 실행 중인 service name 감지 및 적용
+  - 현재는 http://localhost:8080 으로 고정
+  
+* MySQL native query 제거
+  - Shortening Key 조회 수 증가 기능에 native query 를 사용함
+  
+* BaseN decoding 기능 개발
+  - 현재 encoding 기능만 개발 되어 있음
+
+* DB migration tool 적용
+  - 현재 JPA의 DDL generation 적용
+  
+* Error Handling 고도화
+
+---
 
 ## Dependencies
 ### Frontend Dependencies
@@ -48,6 +65,8 @@ URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원�
 | Apache Commons Lang   | 3.9           |
 | JUnit                 | JUnit 5       |
 | MySQL                 | 5.7.26        |
+
+---
 
 ## Prepare Environment
 ### Java
@@ -104,8 +123,9 @@ URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원�
 * MySQL 설치
   - [MySQL 설치 방법](https://www.notion.so/razy/MySQL-2b11f14db9274c26a16088e5fc60bfe3)
 
-## Project Build & Run
+---
 
+## Project Build & Run
 ### checkout
   ```console
   ]$ git clone https://github.com/razy-dev/url_shortener.git
@@ -133,7 +153,7 @@ URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원�
   ]$ gradle build 
   ```
   
-* build with out test
+* build without test
   ```console
   ]$ cd PROJECT_HOME
   ]$ gradle build -x test 
