@@ -56,3 +56,6 @@ asciidoctor {
     inputs.dir snippetsDir
     dependsOn test
 }
+
+apply plugin: 'application'
+mainClassName = 'com.musinsa.UrlShortener.UrlShortenerApplication'
