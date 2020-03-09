@@ -46,7 +46,8 @@ public class UrlShortenerJpaTests {
     @DisplayName("2. ShortUrl insert 테스트")
     public void sortUrlInsertTest() {
 
-        final ShortUrl sourceUrl = ShortUrl.builder().url(testUrl).build();
+        final String   targetUrl = testUrl + Math.random();
+        final ShortUrl sourceUrl = ShortUrl.builder().url(targetUrl).build();
         final ShortUrl actualUrl = shortUrlRepository.save(sourceUrl);
 
         assertThat(actualUrl).isNotNull();
@@ -58,7 +59,8 @@ public class UrlShortenerJpaTests {
     @DisplayName("3. ShortUrl select 테스트")
     public void sortUrlSelectTest() {
 
-        final ShortUrl sourceUrl = ShortUrl.builder().url(testUrl).build();
+        final String   targetUrl = testUrl + Math.random();
+        final ShortUrl sourceUrl = ShortUrl.builder().url(targetUrl).build();
         entityManager.persist(sourceUrl);
         entityManager.clear();
 
@@ -73,7 +75,8 @@ public class UrlShortenerJpaTests {
     @DisplayName("4. ShortUrl findByHash 테스트")
     public void sortUrlfindByHashTest() {
 
-        final ShortUrl sourceUrl = ShortUrl.builder().url(testUrl).build();
+        final String   targetUrl = testUrl + Math.random();
+        final ShortUrl sourceUrl = ShortUrl.builder().url(targetUrl).build();
         entityManager.persist(sourceUrl);
         entityManager.clear();
 
@@ -88,7 +91,8 @@ public class UrlShortenerJpaTests {
     @DisplayName("5. ShortUrl findByShortKey 테스트")
     public void sortUrlfindByShortKeyTest() {
 
-        final ShortUrl sourceUrl = ShortUrl.builder().url(testUrl).build();
+        final String   targetUrl = testUrl + Math.random();
+        final ShortUrl sourceUrl = ShortUrl.builder().url(targetUrl).build();
         sourceUrl.setShortKey("AABB");
         entityManager.persist(sourceUrl);
         entityManager.clear();
@@ -104,7 +108,8 @@ public class UrlShortenerJpaTests {
     @DisplayName("6. ShortUrl increaseCount 테스트")
     public void sortUrlincreaseCountTest() {
 
-        final ShortUrl sourceUrl = ShortUrl.builder().url(testUrl).build();
+        final String   targetUrl = testUrl + Math.random();
+        final ShortUrl sourceUrl = ShortUrl.builder().url(targetUrl).build();
         entityManager.persist(sourceUrl);
         entityManager.clear();
 
