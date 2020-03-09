@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head lang="en">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>URL Shortener</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="theme/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="theme/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="theme/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+        type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="theme/css/landing-page.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #207dae">
+
+<!-- Navigation -->
+<nav class="navbar static-top">
+  <div class="container" style="color:white">
+    Url Shortener
+  </div>
+</nav>
+
+<!-- Masthead -->
+<header class="text-white text-center mt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 mx-auto">
+        <h1 class="mb-5">짧은 URL 만들기</h1>
+      </div>
+      <div id="resultMsg" class="col-xl-9 mx-auto" style="height: 40px; color: red"></div>
+
+      <div class="col-md-10 col-lg-10 col-xl-10 mx-auto">
+
+        <div class="row">
+          <div class="col-12 col-md-8 mb-2 mb-md-0">
+            <input type="text" id="inputUrl" class="form-control form-control-lg" placeholder="http://">
+          </div>
+          <div class="col-12 col-md-4">
+            <button type="button" id="sendUrl" class="btn btn-block btn-lg btn-primary">URL 줄이기</button>
+          </div>
+        </div>
+
+        <div class="row mt-3" style="display: none" id="resultBox">
+          <div class="col-12 col-md-2 align-self-center" style="color:white">
+            <h3 class="mb-5 my-auto align-self-center">짧은 URL</h3>
+          </div>
+          <div class="col-12 col-md-6 mb-2 mb-md-0">
+            <input type="text" name="shortUrl" id="shortUrl" class="form-control form-control-lg" readonly>
+          </div>
+          <div class="col-12 col-md-4">
+            <button type="button" name="copyUrl" id="copyUrl" class="btn btn-block btn-lg btn-primary"
+                    data-clipboard-target="#shortUrl">
+              Copy (<span id="requestCounts"></span>)
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    console.log("abc");
+    $(document).ready(function () {
+        $('#sendUrl').on('click', function (e) {
+
+            e.preventDefault();
+
+            let data = {'url': $('#inputUrl').val()};
+            console.log(data);
+
+            $('#resultMsg').html('');
+            $('#resultBox').hide();
+
+            $.ajax({
+                url: '/api/urls/shorten',
+                data: JSON.stringify(data),
+                method: 'post',
+                contentType: 'application/json',
+                dataType: 'json'
+            }).done(function (response) {
+                console.log("Success", response);
+                $('#shortUrl').val(response.shortUrl);
+                $('#requestCounts').text(response.count);
+                $('#resultBox').show();
+            }).fail(function (request, status, error) {
+                console.log("Error", request, status, error);
+                if (request.responseJSON.errors && request.responseJSON.errors !== null) {
+                    let errors = request.responseJSON.errors;
+                    console.log("Error", errors);
+                    $('#resultMsg').text(`${status} : ${errors.shift().defaultMessage}`);
+                } else if (request.responseJSON.error && request.responseJSON.error !== null) {
+                    $('#resultMsg').text(`${status} : ${request.responseJSON.message}`);
+                } else {
+                    $('#resultMsg').text(`${status} : 서버 오류가 발생하였습니다.`);
+                }
+            });
+
+            return false;
+        });
+    });
+
+    var clipboard = new ClipboardJS('#copyUrl');  // 클래스의 값이 btn인 요소를 복사
+    clipboard.on('success', function () {       // 복사에 성공했을 때
+        // do something
+    });
+    clipboard.on('error', function () {         // 복사에 실패했을 때
+        // do something
+    });
+</script>
+</body>
+</html>
