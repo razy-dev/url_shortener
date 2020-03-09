@@ -132,7 +132,7 @@ URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원�
   ```
 
 ### configuration
-  ```consolr
+  ```console
   ]$ cd PROJECT_HOME/src/main/resources
   ]$ vi jdbc.properties
   ```

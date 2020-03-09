@@ -30,3 +30,4 @@ out/
 
 ### VS Code ###
 .vscode/
+/src/test/java/com/musinsa/UrlShortener/SimpleTests.java
