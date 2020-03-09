@@ -11,13 +11,15 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @ComponentScan
+@WebAppConfiguration
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-@TestPropertySource("classpath:jdbc-test.properties")
+@TestPropertySource("classpath:jdbc.properties")
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class UrlShortenerServiceTests {
 
