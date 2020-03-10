@@ -150,12 +150,12 @@ URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원�
 ---
 
 ## Project Build & Run
-### checkout
+### Checkout
   ```console
   ]$ git clone https://github.com/razy-dev/url_shortener.git
   ```
 
-### configuration
+### Configuration
   ```console
   ]$ cd PROJECT_HOME/src/main/resources
   ]$ vi jdbc.properties
@@ -170,7 +170,7 @@ URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원�
   spring.datasource.password=[DATABASE_PASSWORD]
   ```
 
-## Build & Run
+### Build & Run
 * build & test
   ```console
   ]$ cd PROJECT_HOME
