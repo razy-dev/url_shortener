@@ -8,6 +8,9 @@ public class UrlShortenerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(UrlShortenerApplication.class, args);
+
+        System.out.println("======================================================");
+        System.out.println("Url Shortener Service Running on http://localhost:8080");
     }
 
 }
