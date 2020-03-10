@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@DisplayName("1. Base N encoder 테스트")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class BaseNEncodingTests {
 

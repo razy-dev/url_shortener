@@ -14,6 +14,7 @@ import org.springframework.test.context.TestPropertySource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("2. JPA CRUD 테스트")
 @DataJpaTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestPropertySource("classpath:jdbc.properties")
@@ -43,7 +44,7 @@ public class UrlShortenerJpaTests {
 
     @Test
     @Order(2)
-    @DisplayName("2. ShortUrl insert 테스트")
+    @DisplayName("2. ShortUrl Entity insert 테스트")
     public void sortUrlInsertTest() {
 
         final String   targetUrl = testUrl + Math.random();
@@ -56,7 +57,7 @@ public class UrlShortenerJpaTests {
 
     @Test
     @Order(3)
-    @DisplayName("3. ShortUrl select 테스트")
+    @DisplayName("3. ShortUrl Entity select 테스트")
     public void sortUrlSelectTest() {
 
         final String   targetUrl = testUrl + Math.random();
@@ -72,7 +73,7 @@ public class UrlShortenerJpaTests {
 
     @Test
     @Order(4)
-    @DisplayName("4. ShortUrl findByHash 테스트")
+    @DisplayName("4. ShortUrl Repository findByHash 테스트")
     public void sortUrlfindByHashTest() {
 
         final String   targetUrl = testUrl + Math.random();
@@ -88,7 +89,7 @@ public class UrlShortenerJpaTests {
 
     @Test
     @Order(5)
-    @DisplayName("5. ShortUrl findByShortKey 테스트")
+    @DisplayName("5. ShortUrl Repository findByShortKey 테스트")
     public void sortUrlfindByShortKeyTest() {
 
         final String   targetUrl = testUrl + Math.random();
@@ -105,7 +106,7 @@ public class UrlShortenerJpaTests {
 
     @Test
     @Order(6)
-    @DisplayName("6. ShortUrl increaseCount 테스트")
+    @DisplayName("6. ShortUrl Repository increaseCount 테스트")
     public void sortUrlincreaseCountTest() {
 
         final String   targetUrl = testUrl + Math.random();

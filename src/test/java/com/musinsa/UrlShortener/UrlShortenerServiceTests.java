@@ -15,6 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DisplayName("3. Url Shortener Service 테스트")
 @DataJpaTest
 @ComponentScan
 @WebAppConfiguration

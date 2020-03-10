@@ -32,7 +32,31 @@ URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원�
 * Database 사용은 필수 아님
   - 동일한 URL 처리를 위해 MySQL Database 사용
 
-### TODO
+## Test Case
+### Base N encoder 테스트
+* Base N encoding 테스트
+* Base N decoding 테스트(TODO)
+* Base N encoding 최대 길이 테스트
+
+### JPA CRUD 테스트
+* ShortUrl Entity Build 시 source url 에 대한 hash 생성 테스트
+* ShortUrl Entity insert 테스트
+* ShortUrl Entity select 테스트
+* ShortUrl Repository findByHash 테스트
+* ShortUrl Repository findByShortKey 테스트
+* ShortUrl Repository increaseCount 테스트
+
+### Url Shortener Service 테스트
+* source url 에 대한 short Key 생성 테스트
+* source url 에 대한 동일한 short Key 생성 테스트
+* short Key 로 찾은 url 검증 테스트
+
+### Application 통합 테스트
+* Short URL 생성 Rest Api 테스트
+* Short Key 로 원본 URL Redirect 테스트
+* Short Key 로 원본 URL 을 찾지 못할 경우 테스트
+
+## TODO
 * 실행 중인 service name 감지 및 적용
   - 현재는 http://localhost:8080 으로 고정
   
