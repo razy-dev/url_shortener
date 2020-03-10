@@ -185,6 +185,7 @@ URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원�
   
 * run project
   ```console
+  ]$ cd PROJECT_HOME
   ]$ gradle run
   ```
 
